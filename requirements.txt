@@ -1,9 +1,3 @@
-fastapi
-sqlalchemy
-alembic
-psycopg2
-uvicorn
-
 numpy
 pillow
 requests
@@ -12,4 +6,3 @@ pandas
 tqdm
 rasterio
 opencv-python
-cPickle
