@@ -1,0 +1,15 @@
+fastapi
+sqlalchemy
+alembic
+psycopg2
+uvicorn
+
+numpy
+pillow
+requests
+scikit-learn
+pandas
+tqdm
+rasterio
+opencv-python
+cPickle
