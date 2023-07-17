@@ -32,10 +32,10 @@ class SegmentationRandomForestClassifier:
                 "green": []
             }
 
-            for row in range(image.shape[1]):
-                for col in range(image.shape[2]):
-                    df["red"].append(image[0][row][col])
-                    df["green"].append(image[1][row][col])
+            for row in range(image.shape[0]):
+                for col in range(image.shape[1]):
+                    df["red"].append(image[row][col][0])
+                    df["green"].append(image[row][col][1])
 
             df = pd.DataFrame(df)
             df = self.scaler.transform(df)
@@ -160,26 +160,25 @@ class SegmentationRandomForestClassifier:
         return x, y
 
 
-if __name__ == "__main__":
-    model = SegmentationRandomForestClassifier()
-    # # x, y = model.dataset_create("D:\\projects_andrey\\datasets\\segmentations\\landsat8\\images\\train",
-    # #                             "D:\\projects_andrey\\datasets\\segmentations\\landsat8\\masks\\train")
-    # # model.dataset_save(x, y, "data")
-    # X, y = model.dataset_load('./data')
-    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-    # model.train(X_train, y_train, "./models")
-    # print(model.evaluate(X_test, y_test))
-
-
-    ##################
-    model.load('./models/output/')
-    ind , img = model._read_nvdi("D:\\projects_andrey\\datasets\\segmentations\\landsat8\\images\\train//LC08_L1GT_008064_20200813_20200813_01_RT_p00431.tif.png")
-
-    Image.fromarray(img.transpose((1,2,0)).astype('uint8'), 'RGB').show()
-    res = model.predict(img)
-    res[0].show()
-    # cv.imshow("test", res[0])
-    # cv.waitKey(0)
-    # cv.destroyAllWindows()
-    print(7)
-
+# if __name__ == "__main__":
+#     model = SegmentationRandomForestClassifier()
+#     # # x, y = model.dataset_create("D:\\projects_andrey\\datasets\\segmentations\\landsat8\\images\\train",
+#     # #                             "D:\\projects_andrey\\datasets\\segmentations\\landsat8\\masks\\train")
+#     # # model.dataset_save(x, y, "data")
+#     # X, y = model.dataset_load('./data')
+#     # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+#     # model.train(X_train, y_train, "./models")
+#     # print(model.evaluate(X_test, y_test))
+#
+#     ##################
+#     model.load('./models/output/')
+#     ind, img = model._read_nvdi(
+#         "D:\\projects_andrey\\datasets\\segmentations\\landsat8\\images\\train//LC08_L1GT_008064_20200813_20200813_01_RT_p00431.tif.png")
+#
+#     Image.fromarray(img.transpose((1, 2, 0)).astype('uint8'), 'RGB').show()
+#     res = model.predict(img)
+#     res[0].show()
+#     # cv.imshow("test", res[0])
+#     # cv.waitKey(0)
+#     # cv.destroyAllWindows()
+#     print(7)
